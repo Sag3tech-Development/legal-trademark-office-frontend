@@ -74,6 +74,10 @@ export default {
         roboto: ["var(--font-roboto)", "sans-serif"],
       },
 
+      backgroundImage: {
+        "home-hero": "url('/images/home-hero-img.png')",
+      },
+
       screens: {
         xs: "320px",
         sm: "480px",
