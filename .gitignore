@@ -22,7 +22,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # ENVOIRMENT VARIABLE FILES
-.env.production
+.env
 
 # VERCEL
 .vercel
