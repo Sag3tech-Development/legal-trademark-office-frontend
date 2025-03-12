@@ -44,8 +44,8 @@ const PricingSection = () => {
             <Card
               key={data.id}
               className={cn(
-                data.id === 2 && "bg-black/10 border-black/10",
-                "pt-2 pb-8"
+                data.id === 2 && "shadow-2xl",
+                "pt-2 pb-8 !rounded-2xl"
               )}
             >
               <CardHeader>
@@ -77,12 +77,7 @@ const PricingSection = () => {
                   onClick={() =>
                     handleNavigation(`/business-registration/step-1`)
                   }
-                  className={cn(
-                    data.id === 2
-                      ? "bg-secondary hover:bg-secondary-hover"
-                      : "hover:bg-primary-hover",
-                    "md:text-base text-sm md:py-6 py-5"
-                  )}
+                  className="hover:bg-primary-hover md:text-base text-sm md:py-6 py-5"
                 >
                   Get Started Now
                 </Button>
