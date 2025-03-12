@@ -12,7 +12,7 @@ const StorySection = () => {
             Hear Our <span className="text-primary">Story</span>
           </h1>
 
-          <div className="flex flex-col gap-4 lg:text-lg md:text-base text-sm font-medium">
+          <div className="flex flex-col gap-4 lg:text-lg md:text-base text-sm">
             <p>
               In 2001, we established ourselves as a tech company dedicated to
               making legal help accessible to all. With that mission in mind, we

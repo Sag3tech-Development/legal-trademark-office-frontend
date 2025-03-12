@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 
-import FaqsPage from "@/pages/faqs-page";
+import FaqsPage from "@/pages/website/faqs-page";
 
 export const metadata: Metadata = GetPageMetadata({
   title: "Trademark FAQs - Get Expert Answers | Legal Trademark Office",

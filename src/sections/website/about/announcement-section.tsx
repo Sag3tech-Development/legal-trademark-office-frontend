@@ -17,7 +17,7 @@ const AnnouncementSection = () => {
             <span className="text-primary">Everyone</span>
           </h1>
 
-          <div className="flex flex-col gap-4 lg:text-lg md:text-base text-sm font-medium">
+          <div className="flex flex-col gap-4 lg:text-lg md:text-base text-sm">
             <p>
               We believe legal help should be accessible to anyone—regardless of
               who they are, who they love, the color of their skin, or their

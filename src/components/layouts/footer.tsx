@@ -56,10 +56,10 @@ const Footer = () => {
               </li>
             </Link>
 
-            <Link href="/terms-condition" passHref>
+            <Link href="/terms-conditions" passHref>
               <li
                 className={cn(
-                  pathname === "/terms-condition"
+                  pathname === "/terms-conditions"
                     ? "text-primary"
                     : "hover:text-primary"
                 )}

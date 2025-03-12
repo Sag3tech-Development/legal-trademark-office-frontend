@@ -3,6 +3,44 @@ import AboutValueImg02 from "../../public/images/about-value-img-02.png";
 import AboutValueImg03 from "../../public/images/about-value-img-03.png";
 import AboutValueImg04 from "../../public/images/about-value-img-04.png";
 import AboutValueImg05 from "../../public/images/about-value-img-05.png";
+import LegalTeamEmployee01Img from "../../public/images/legal-team-employee-01-img.png";
+import LegalTeamEmployee02Img from "../../public/images/legal-team-employee-02-img.png";
+import LegalTeamEmployee03Img from "../../public/images/legal-team-employee-03-img.png";
+import LegalTeamEmployee04Img from "../../public/images/legal-team-employee-04-img.png";
+
+export const MeetLegalTeamSectionData = [
+  {
+    img: LegalTeamEmployee01Img,
+    name: "Frank Hudson",
+    position: "Assistant Paralegal Officer",
+    descripiton:
+      "David is dedicated to assisting clients with inquiries, guiding them through the registration process, and ensuring a seamless experience from start to finish.",
+  },
+
+  {
+    img: LegalTeamEmployee02Img,
+    name: "David William",
+    position: "Customer Support",
+    descripiton:
+      "David is dedicated to assisting clients with inquiries, guiding them through the registration process, and ensuring a seamless experience from start to finish.",
+  },
+
+  {
+    img: LegalTeamEmployee03Img,
+    name: "Mark Alexander",
+    position: "Sr. Case Analyst",
+    descripiton:
+      "Mark brings years of expertise in analyzing complex legal cases, offering valuable insights for trademark disputes and intellectual property protection.",
+  },
+
+  {
+    img: LegalTeamEmployee04Img,
+    name: "Michael Rich",
+    position: "Sr. Case Analyst",
+    descripiton:
+      "Michael specializes in case evaluation and strategy, ensuring every client's intellectual property is safeguarded with comprehensive legal solutions.",
+  },
+];
 
 export const ValuesSectionData = [
   {

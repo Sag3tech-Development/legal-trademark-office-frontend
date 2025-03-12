@@ -18,7 +18,7 @@ const ValuesSection = () => {
               <h1 className="lg:text-2xl md:text-xl text-lg font-medium text-heading mt-4">
                 {data.title}
               </h1>
-              <p className="lg:text-lg md:text-base text-sm font-medium">
+              <p className="lg:text-lg md:text-base text-sm">
                 {data.desc}
               </p>
             </div>

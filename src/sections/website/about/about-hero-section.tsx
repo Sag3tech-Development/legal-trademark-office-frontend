@@ -34,7 +34,7 @@ const AboutHeroSection = () => {
           Hello, We Are Legal Trademark Office
         </h1>
 
-        <p className="max-w-[900px] font-medium lg:text-lg md:text-base text-sm text-center">
+        <p className="max-w-[900px] lg:text-lg md:text-base text-sm text-center">
           At Secure Your Mark, we offer comprehensive trademark protection
           packages designed to meet the unique needs of your brand. Choose our
           DIY-assisted service for a hands-on approach, allowing you to navigate
