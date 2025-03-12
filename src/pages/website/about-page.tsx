@@ -13,9 +13,9 @@ const AboutPage = () => {
       <AboutHeroSection />
       <StorySection />
       <HighlightSection />
-      <MeetLegalTeamSection />
-      <AnnouncementSection />
       <ValuesSection />
+      <AnnouncementSection />
+      <MeetLegalTeamSection />
     </main>
   );
 };

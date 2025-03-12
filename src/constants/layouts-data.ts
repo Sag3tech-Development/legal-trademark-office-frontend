@@ -8,22 +8,22 @@ export const HeaderNavigationLinks = [
     navText: "Our Services",
     subLinks: [
       {
-        subLink: "/service/trademark-registration",
+        subLink: "/services/trademark-registration",
         subLinkText: "Trademark Registration",
       },
 
       {
-        subLink: "/service/patent-registration",
+        subLink: "/services/patent-registration",
         subLinkText: "Patent Registration",
       },
 
       {
-        subLink: "/service/amazon-brand-registration",
+        subLink: "/services/amazon-brand-registration",
         subLinkText: "Amazon Brand Registration",
       },
 
       {
-        subLink: "/service/copyright-registration",
+        subLink: "/services/copyright-registration",
         subLinkText: "Copyright Registration",
       },
     ],

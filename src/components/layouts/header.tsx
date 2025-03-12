@@ -52,7 +52,7 @@ const Header = () => {
                               <NavigationMenuLink
                                 href={subLink.subLink}
                                 className={cn(
-                                  pathname === link.navLink
+                                  pathname === subLink.subLink
                                     ? "text-primary"
                                     : "hover:text-primary"
                                 )}

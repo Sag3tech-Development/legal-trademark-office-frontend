@@ -76,6 +76,8 @@ export default {
 
       backgroundImage: {
         "home-hero": "url('/images/home-hero-img.png')",
+        "services-trademark-registration-hero":
+          "url('/images/services-trademark-registration-hero-img.jpg')",
       },
 
       screens: {

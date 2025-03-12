@@ -27,7 +27,7 @@ const MeetLegalTeamSection = () => {
           {MeetLegalTeamSectionData.map((member, index) => (
             <Card
               key={index}
-              className="shadow-2xl md:h-[400px] md:flex items-center bg-secondary-bg-color px-4 md:pt-4 md:pb-0 py-8"
+              className="md:h-[400px] md:flex items-center bg-secondary-bg-color px-4 md:pt-4 md:pb-0 py-8"
             >
               <Image
                 className="md:w-1/2 md:h-full rounded-lg sm:rounded-none sm:rounded-l-lg"
