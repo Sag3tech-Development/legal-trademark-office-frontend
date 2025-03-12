@@ -78,6 +78,12 @@ export default {
         "home-hero": "url('/images/home-hero-img.png')",
         "services-trademark-registration-hero":
           "url('/images/services-trademark-registration-hero-img.jpg')",
+        "services-patent-registration-hero":
+          "url('/images/services-patent-registration-hero-img.webp')",
+        "services-amazon-brand-registration-hero":
+          "url('/images/services-amazon-brand-registration-hero-img.jpg')",
+        "services-copyright-registration-hero":
+          "url('/images/services-copyright-registration-hero-img.jpg')",
       },
 
       screens: {

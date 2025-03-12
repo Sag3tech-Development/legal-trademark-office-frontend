@@ -16,9 +16,9 @@ import ServicesFaqsSection from "@/sections/website/services/services-faqs-secti
 import ServicesTestimonialSection from "@/sections/website/services/services-testimonial-section";
 import ServicesImportanceSection from "@/sections/website/services/service-importance-section";
 
-import ServicesTrademarkProcess1Img from "../../../public/images/services-trademark-process-1-img.webp";
-import ServicesTrademarkProcess2Img from "../../../public/images/services-trademark-process-2-img.webp";
-import ServicesTrademarkProcess3Img from "../../../public/images/services-trademark-process-3-img.webp";
+import ServicesProcess1Img from "../../../public/images/services-process-1-img.webp";
+import ServicesProcess2Img from "../../../public/images/services-process-2-img.webp";
+import ServicesProcess3Img from "../../../public/images/services-process-3-img.webp";
 import ServicesTrademarkAttorneyAchievement1 from "../../../public/images/services-trademark-attorney-achievement-01-img.png";
 import ServicesTrademarkAttorneyAchievement2 from "../../../public/images/services-trademark-attorney-achievement-02-img.jpg";
 import { BsAwardFill } from "react-icons/bs";
@@ -43,13 +43,13 @@ const TrademarkRegistrationServicePage = () => {
         titleText="Our Streamlined Trademark Registration Process"
         descriptionText=" Get your trademark registered in just 3 easy steps using our simple online questionaire."
         process1Title="Search for Availability"
-        process1Img={ServicesTrademarkProcess1Img}
+        process1Img={ServicesProcess1Img}
         process1Description="Check to see if your trademark is already being used."
         process2Title="Answer a few Questions"
-        process2Img={ServicesTrademarkProcess2Img}
+        process2Img={ServicesProcess2Img}
         process2Description="Fill out our simple questionnaire to begin the registration process."
         process3Title="Application Filling"
-        process3Img={ServicesTrademarkProcess3Img}
+        process3Img={ServicesProcess3Img}
         process3Description="Your application will be filed with the Trademark Office (USPTO)."
       />
 
