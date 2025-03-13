@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { ServicesAchievementSectionProps } from "@/interfaces/website-sections-interfaces";
+import { ServicesAchievementSectionProps } from "@/interfaces/website-sections-interface";
 
 import { FaStar } from "react-icons/fa";
 

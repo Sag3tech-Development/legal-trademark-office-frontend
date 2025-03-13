@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ServicesImportanceSectionProps } from "@/interfaces/website-sections-interfaces";
+import { ServicesImportanceSectionProps } from "@/interfaces/website-sections-interface";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
@@ -44,7 +44,9 @@ const ServicesImportanceSection = ({
               </h1>
             </CardHeader>
 
-            <CardContent className="text-lg text-center">{note.impDesc}</CardContent>
+            <CardContent className="text-lg text-center">
+              {note.impDesc}
+            </CardContent>
           </Card>
         ))}
       </div>

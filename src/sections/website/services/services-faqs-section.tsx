@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ServicesFaqSectionProps } from "@/interfaces/website-sections-interfaces";
+import { ServicesFaqSectionProps } from "@/interfaces/website-sections-interface";
 
 import {
   Accordion,
@@ -32,9 +32,7 @@ const ServicesFaqsSection = ({
             </h1>
           </div>
 
-          <p className="lg:text-lg md:text-base text-sm">
-            {description}
-          </p>
+          <p className="lg:text-lg md:text-base text-sm">{description}</p>
         </div>
 
         <div className="col-span-1 flex flex-col gap-4 bg-white rounded-xl shadow-lg p-4 px-8">
