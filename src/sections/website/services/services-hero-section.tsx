@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { ServicesHeroSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesHeroSectionProps } from "@/interfaces/website-section-interfaces";
 
 import { Button } from "@/components/ui/button";
 

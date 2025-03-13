@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ServicesImportanceSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesImportanceSectionProps } from "@/interfaces/website-section-interfaces";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 

@@ -78,7 +78,7 @@ const BusinessRegistrationStep1Form = () => {
   };
 
   return (
-    <section className="mt-4">
+    <section className="mt-12">
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
           {/* SYSTEM FIELD 01 */}
@@ -172,7 +172,7 @@ const BusinessRegistrationStep1Form = () => {
             placeholder="e.g., Monday 10:00 AM"
           />
 
-          <Separator className="mt-[2rem]" />
+          <Separator className="mt-12" />
 
           {/* SYSTEM FIELD 02 */}
           <CustomSystemField control={control} name="system02" />

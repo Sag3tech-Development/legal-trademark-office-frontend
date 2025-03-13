@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { ServicesProcessSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesProcessSectionProps } from "@/interfaces/website-section-interfaces";
 
 import { FaLongArrowAltDown, FaLongArrowAltRight } from "react-icons/fa";
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { ServicesTestimonialSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesTestimonialSectionProps } from "@/interfaces/website-section-interfaces";
 
 import {
   Card,

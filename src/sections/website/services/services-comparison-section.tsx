@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { ServicesComparisonSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesComparisonSectionProps } from "@/interfaces/website-section-interfaces";
 
 import Logo from "../../../../public/favicons/logo.svg";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";

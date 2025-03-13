@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ServicesFaqSectionProps } from "@/interfaces/website-sections-interface";
+import { ServicesFaqSectionProps } from "@/interfaces/website-section-interfaces";
 
 import {
   Accordion,
