@@ -4,10 +4,14 @@ import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { State, City } from "country-state-city";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { BusinessRegistrationStep1FormData } from "@/interfaces/form-interfaces";
 
 import { BusinessRegistrationStep1FormSchema } from "@/schemas/business-registration-step-1-form-schema";
+
+import { ApiRequest } from "@/utils/api-request";
 
 import { Form } from "../ui/form";
 import CustomSystemField from "../common/custom-system-field";
@@ -20,6 +24,8 @@ import { LoaderCircle } from "lucide-react";
 
 const BusinessRegistrationStep1Form = () => {
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   // US STATES AND CITIES
   const states = useMemo(
@@ -70,11 +76,25 @@ const BusinessRegistrationStep1Form = () => {
 
     setLoading(true);
 
-    console.log(data);
+    const { system01, system02, ...filteredData } = data;
 
-    setTimeout(() => {
+    try {
+      const response = await ApiRequest<{ success: boolean; message: string }>({
+        endpoint: "/lto/form/step-1",
+        method: "POST",
+        body: filteredData,
+        onSuccess: () => {
+          router.push("/business-registration/step-2");
+        },
+        onFailure: () => {
+          toast.error("Failed to complete the form.");
+        },
+      });
+    } catch (error: any) {
+      toast.error("Form submission failed:", error);
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
