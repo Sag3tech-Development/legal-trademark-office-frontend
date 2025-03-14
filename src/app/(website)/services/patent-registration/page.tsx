@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import PatentRegistrationServicePage from "@/pages/website/patent-registration-service-page";
+import PatentRegistrationServicePage from "@/custom-pages/website/patent-registration-service-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
 
-import { GetPageMetadata } from "@/utils/meta-data";
+import AboutPage from "@/custom-pages/website/about-page";
 
-import AboutPage from "@/pages/website/about-page";
+import { GetPageMetadata } from "@/utils/meta-data";
 
 export const metadata: Metadata = GetPageMetadata({
   title: "About Legal Trademark Office - Trusted Trademark Experts",

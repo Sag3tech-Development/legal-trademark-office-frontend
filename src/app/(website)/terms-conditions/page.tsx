@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import TermsConditionsPage from "@/pages/website/terms-conditions-page";
+import TermsConditionsPage from "@/custom-pages/website/terms-conditions-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import BusinessRegistrationStep1Page from "@/pages/system/business-registration-step-1-page";
+import BusinessRegistrationStep1Page from "@/custom-pages/system/business-registration-step-1-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

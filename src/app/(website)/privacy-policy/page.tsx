@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import PrivacyPolicyPage from "@/pages/website/privacy-policy-page";
+import PrivacyPolicyPage from "@/custom-pages/website/privacy-policy-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

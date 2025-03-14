@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import AmazonBrandRegistrationServicePage from "@/pages/website/amazon-brand-registration-service-page";
+import AmazonBrandRegistrationServicePage from "@/custom-pages/website/amazon-brand-registration-service-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

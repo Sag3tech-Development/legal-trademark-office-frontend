@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import TrademarkRegistrationServicePage from "@/pages/website/trademark-registration-service-page";
+import TrademarkRegistrationServicePage from "@/custom-pages/website/trademark-registration-service-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

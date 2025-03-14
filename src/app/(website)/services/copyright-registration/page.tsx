@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import CopyrightRegistrationServicePage from "@/pages/website/copyright-registration-service-page";
+import CopyrightRegistrationServicePage from "@/custom-pages/website/copyright-registration-service-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

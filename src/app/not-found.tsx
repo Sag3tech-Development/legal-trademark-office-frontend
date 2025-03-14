@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import Error404Page from "@/pages/others/error-404-page";
+import Error404Page from "@/custom-pages/others/error-404-page";
 
 import OtherHeader from "@/components/layouts/other-header";
 import OtherFooter from "@/components/layouts/other-footer";

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import MaintenancePage from "@/pages/others/maintenance-page";
+import MaintenancePage from "@/custom-pages/others/maintenance-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 

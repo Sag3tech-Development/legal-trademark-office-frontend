@@ -1,8 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
 
+import GatewayFailedPage from "@/custom-pages/others/gateway-failed-page";
+
 import { GetPageMetadata } from "@/utils/meta-data";
-import GatewayFailedPage from "@/pages/others/gateway-failed-page";
 
 export const metadata: Metadata = GetPageMetadata({
   title: "Payment Failed | Troubleshoot & Support - Legal Trademark Office",
