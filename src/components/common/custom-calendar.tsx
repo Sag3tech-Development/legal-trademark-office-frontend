@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FieldValues, PathValue, Path } from "react-hook-form";
 import { format } from "date-fns";
 
@@ -32,6 +32,8 @@ const CustomCalendar = <T extends FieldValues>({
   disabled = false,
   setValue,
 }: CustomCalendarProps<T>) => {
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     if (disabled) {
       setValue(name as Path<T>, undefined as PathValue<T, Path<T>>);
@@ -56,10 +58,11 @@ const CustomCalendar = <T extends FieldValues>({
 
           <FormControl>
             <div className="w-full relative">
-              <Popover>
+              <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     disabled={disabled}
+                    onClick={() => setOpen(true)}
                     className={cn(
                       "w-full flex-center justify-start h-[50px] rounded-[5px] border border-border bg-transparent hover:bg-blue-50 md:text-base text-sm shadow-none text-paragraph font-normal"
                     )}
@@ -76,7 +79,10 @@ const CustomCalendar = <T extends FieldValues>({
                   <Calendar
                     mode="single"
                     selected={field.value}
-                    onSelect={(date) => field.onChange(date)}
+                    onSelect={(date) => {
+                      field.onChange(date);
+                      setOpen(false); // Close the popover on date select
+                    }}
                     initialFocus
                   />
                 </PopoverContent>

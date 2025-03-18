@@ -57,7 +57,6 @@ export interface CustomUploadProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
-  setValue: UseFormSetValue<T>;
 }
 
 export interface CustomCalendarProps<T extends FieldValues> {
@@ -66,4 +65,12 @@ export interface CustomCalendarProps<T extends FieldValues> {
   label: string;
   disabled?: boolean;
   setValue: UseFormSetValue<T>;
+}
+
+export interface CustomTextareaProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  placeholder?: string;
+  rows?: number;
 }

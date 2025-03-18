@@ -7,8 +7,8 @@ export const ApiRequest = async <T>({
 }: {
   endpoint: string;
   method?: "GET" | "POST" | "PUT" | "DELETE";
-  body?: Record<string, any>;
-  onSuccess?: () => void;
+  body?: Record<string, unknown>;
+  onSuccess?: (data: T) => void;
   onFailure?: () => void;
 }): Promise<T> => {
   try {
@@ -23,20 +23,26 @@ export const ApiRequest = async <T>({
       }
     );
 
-    const data = await response.json();
+    const data: T = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "Something went wrong");
+      if (typeof data === "object" && data !== null && "message" in data) {
+        throw new Error((data as { message: string }).message);
+      }
+      throw new Error("Something went wrong");
     }
 
-    if (onSuccess) onSuccess();
+    if (onSuccess) onSuccess(data);
     return data;
-  } catch (error: any) {
-    console.error("API Request Error:", error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("API Request Error:", error.message);
+    }
 
     if (
-      error.message.includes("NetworkError") ||
-      error.message.includes("Failed to fetch")
+      error instanceof Error &&
+      (error.message.includes("NetworkError") ||
+        error.message.includes("Failed to fetch"))
     ) {
       window.location.href = "/server-down";
     }

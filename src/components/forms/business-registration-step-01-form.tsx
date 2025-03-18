@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { State, City } from "country-state-city";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useDispatch } from "react-redux";
+
+import { setFormId } from "@/store/slices/form-slice";
 
 import { BusinessRegistrationStep01FormData } from "@/interfaces/form-interfaces";
 
@@ -26,6 +29,7 @@ const BusinessRegistrationStep01Form = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   // US STATES AND CITIES
   const states = useMemo(
@@ -80,11 +84,16 @@ const BusinessRegistrationStep01Form = () => {
     const { system01, system02, ...filteredData } = data;
 
     try {
-      await ApiRequest<{ success: boolean; message: string }>({
+      await ApiRequest<{
+        success: boolean;
+        message: string;
+        data: { formId: string };
+      }>({
         endpoint: "/legal-trademark-office/form/step-01",
         method: "POST",
         body: filteredData,
-        onSuccess: () => {
+        onSuccess: (response) => {
+          dispatch(setFormId(response.data.formId));
           router.push("/business-registration/step-02");
         },
         onFailure: () => {

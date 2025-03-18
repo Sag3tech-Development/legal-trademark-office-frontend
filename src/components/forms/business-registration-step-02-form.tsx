@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Country, State } from "country-state-city";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useSelector } from "react-redux";
 
 import { BusinessRegistrationStep02FormData } from "@/interfaces/form-interfaces";
+import { RootState } from "@/interfaces/store-interfaces";
 import { ProtectionTypeEnum } from "@/enums/protection-type-enum";
 
 import { BusinessRegistrationStep02FormSchema } from "@/schemas/business-registration-step-02-form-schema";
@@ -16,18 +19,26 @@ import CustomSystemField from "../common/custom-system-field";
 import CustomSelection from "../common/custom-selection";
 import CustomInput from "../common/custom-input";
 import CustomUpload from "../common/custom-upload";
-import { CustomDropdown02 } from "../common/custom-dropdowns";
+import { CustomDropdown01, CustomDropdown02 } from "../common/custom-dropdowns";
 import CustomCalendar from "../common/custom-calendar";
+import CustomTextarea from "../common/custom-textarea";
+import { Separator } from "../ui/separator";
+import { Button } from "../ui/button";
+
+import { ApiRequest } from "@/utils/api-request";
 
 import FormImg01 from "../../../public/images/form-img-01.png";
 import FormImg02 from "../../../public/images/form-img-02.png";
 import FormImg03 from "../../../public/images/form-img-03.png";
 import FormImg04 from "../../../public/images/form-img-04.png";
+import { LoaderCircle } from "lucide-react";
 
 const BusinessRegistrationStep02Form = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  const formId = useSelector((state: RootState) => state.form.formId);
 
   const countries = useMemo(
     () =>
@@ -90,13 +101,38 @@ const BusinessRegistrationStep02Form = () => {
       return;
     }
 
+    if (!formId) {
+      toast.error("Form ID is missing. Please complete Step 1.");
+      return;
+    }
+
     setLoading(true);
 
-    console.log(data);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { system01, system02, ...filteredData } = data;
 
-    setTimeout(() => {
+    try {
+      await ApiRequest<{ success: boolean; message: string }>({
+        endpoint: `/legal-trademark-office/form/step-02/${formId}`,
+        method: "POST",
+        body: filteredData,
+        onSuccess: () => {
+          toast.success("Step 2 Completed Successfully!");
+          router.push("/business-registration/step-03");
+        },
+        onFailure: () => {
+          toast.error("Failed to complete the form.");
+        },
+      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(`Form submission failed: ${error.message}`);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -168,7 +204,6 @@ const BusinessRegistrationStep02Form = () => {
                 control={control}
                 name="protectionLogo"
                 label="Upload Your Logo"
-                setValue={setValue}
               />
             </>
           ) : protectionType === ProtectionTypeEnum.SLOGAN ? (
@@ -223,7 +258,6 @@ const BusinessRegistrationStep02Form = () => {
                 control={control}
                 name="protectionLogo"
                 label="Upload Your Logo"
-                setValue={setValue}
               />
             </>
           )}
@@ -287,9 +321,125 @@ const BusinessRegistrationStep02Form = () => {
 
           {!isIndividuallyOwnedTrademark && (
             <>
-            
+              {/* IS US-BASED ORGANIZATION FIELD */}
+              <CustomDropdown02
+                control={control}
+                name="isUSBasedOrganization"
+                label="Is the owning origanization/corporation based in the United States?"
+                options={[
+                  {
+                    label: "Yes, the origanization/corporation is US-based.",
+                    value: true,
+                  },
+                  {
+                    label: "No, the origanization/corporation is not US-based.",
+                    value: false,
+                  },
+                ]}
+              />
+
+              <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-4">
+                {/* ORGANIZATION NAME FIELD */}
+                <CustomInput
+                  control={control}
+                  name="organizationName"
+                  label="Enter the name of the origanization/corporation"
+                  placeholder="e.g., Apple Inc."
+                />
+
+                {/* ORGANIZATION TYPE FIELD */}
+                <CustomDropdown01
+                  control={control}
+                  name="organizationType"
+                  label="Origanization/Corporation Type"
+                  options={[
+                    { name: "LLC", value: "llc" },
+                    { name: "C Corporation", value: "c-corporation" },
+                    { name: "S Corporation", value: "s-corporation" },
+                    { name: "Non Profit", value: "non-profit" },
+                    { name: "Partnership", value: "partnership" },
+                    {
+                      name: "Solo Proprietorship",
+                      value: "solo-proprietorship",
+                    },
+                    { name: "Trust", value: "trust" },
+                    { name: "Other", value: "other" },
+                  ].map((option) => ({
+                    label: option.name,
+                    value: option.name,
+                  }))}
+                  placeholder="Select your origanization/corporation type"
+                  isVirtualized={false}
+                />
+              </div>
+
+              <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-4">
+                {isUSBasedOrganization ? (
+                  <>
+                    {/* ORGANIZATION FORMATION STATE FIELD */}
+                    <CustomDropdown01
+                      control={control}
+                      name="organizationFormationState"
+                      label="Origanization/Corporation Formation State"
+                      options={states}
+                      placeholder="Select your origanization/corporation formation state"
+                      isVirtualized={false}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {/* ORGANIZATION FORMATION COUNTRY FIELD */}
+                    <CustomDropdown01
+                      control={control}
+                      name="organizationFormationCountry"
+                      label="Origanization/Corporation Formation Country"
+                      options={countries}
+                      placeholder="Select your origanization/corporation formation country"
+                      isVirtualized={false}
+                    />
+                  </>
+                )}
+
+                {/* ORGANIZATION POSITION FIELD */}
+                <CustomInput
+                  control={control}
+                  name="organizationPosition"
+                  label="Enter the position held by the individual"
+                  placeholder="e.g., CEO, CFO, Product Manager."
+                />
+              </div>
             </>
           )}
+
+          {/* BUSINESS CLASSIFICATION FIELD */}
+          <CustomTextarea
+            control={control}
+            name="businessClassification"
+            label="Enter the business classification"
+            placeholder="e.g., clothing, coffee shops, restaurants, retail stores..."
+            rows={16}
+          />
+
+          <Separator className="mt-12" />
+
+          {/* SYSTEM FIELD 02 */}
+          <CustomSystemField control={control} name="system02" />
+
+          <div className="w-full flex items-center justify-end mb-12">
+            <Button
+              className="w-[200px] h-[56px] text-base !rounded-[5px] hover:bg-primary-hover"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="w-full h-full flex items-center justify-center gap-2">
+                  <p>Submiting</p> <LoaderCircle className="animate-spin" />
+                </div>
+              ) : (
+                "Next Step"
+              )}
+            </Button>
+          </div>
         </form>
       </Form>
     </section>

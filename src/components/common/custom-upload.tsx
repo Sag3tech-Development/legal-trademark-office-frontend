@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
+import Image from "next/image";
 
 import { CustomUploadProps } from "@/interfaces/common-component-interfaces";
 
@@ -15,87 +15,134 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-import { IoMdCloudUpload } from "react-icons/io";
+import { LoaderCircle, UploadCloud, XCircle } from "lucide-react";
+
+type CloudinaryUploadWidget = {
+  open: () => void;
+};
+
+declare global {
+  interface Window {
+    cloudinary?: {
+      createUploadWidget: (
+        options: Record<string, unknown>,
+        callback: (
+          error: unknown,
+          result: { event: string; info: { secure_url: string } }
+        ) => void
+      ) => CloudinaryUploadWidget;
+    };
+  }
+}
 
 const CustomUpload = <T extends FieldValues>({
   control,
   name,
   label,
-  setValue,
 }: CustomUploadProps<T>) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  useEffect(() => {
+    if (typeof window !== "undefined" && !window.cloudinary) {
+      const script = document.createElement("script");
+      script.src = "https://upload-widget.cloudinary.com/global/all.js";
+      script.async = true;
+      script.onload = () => console.log("Cloudinary script loaded");
+      document.body.appendChild(script);
+    }
+  }, []);
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "ml_default");
+  const handleUpload = (fieldOnChange: (value: string | null) => void) => {
+    const cloudName = "dptujgmbz";
+    const uploadPreset = "secure_your_mark_preset";
 
-    try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/dnsk6igfu/image/upload`,
+    if (typeof window !== "undefined" && window.cloudinary) {
+      setIsLoading(true);
+
+      const myWidget = window.cloudinary.createUploadWidget(
         {
-          method: "POST",
-          body: formData,
+          cloudName,
+          uploadPreset,
+          sources: ["local", "url"],
+          multiple: false,
+          maxFiles: 1,
+          cropping: true,
+          croppingAspectRatio: 1,
+        },
+        (error, result) => {
+          setIsLoading(false);
+
+          if (!error && result.event === "success" && result.info?.secure_url) {
+            setPreviewUrl(result.info.secure_url);
+            fieldOnChange(result.info.secure_url);
+          }
         }
       );
 
-      if (response.ok) {
-        const data = await response.json();
-        setPreviewUrl(data.secure_url);
-
-        setValue(name, data.secure_url);
-      } else {
-        console.error("Failed to upload image");
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
+      myWidget.open();
+    } else {
+      console.error("Cloudinary is not loaded");
     }
+  };
+
+  const handleRemoveImage = (fieldOnChange: (value: string | null) => void) => {
+    setPreviewUrl(null);
+    fieldOnChange(null);
   };
 
   return (
     <FormField
       control={control}
       name={name}
-      render={() => (
+      render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-heading md:text-base text-sm font-normal">
+          <FormLabel className="text-heading md:text-base text-sm">
             {label}
           </FormLabel>
           <FormControl>
             <div className="w-full flex flex-col items-center gap-4">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleUpload}
-                className="hidden"
-                id="file-upload"
-              />
-              <label htmlFor="file-upload" className="w-full">
-                <Button
-                  className="rounded-[5px] h-[55px] w-full flex items-center justify-center md:text-base text-sm hover:bg-primary-hover"
-                  type="button"
-                >
-                  <IoMdCloudUpload className="!h-[22px] !w-[22px] mr-2" />
-                  Upload Logo
-                </Button>
-              </label>
-              {previewUrl && (
-                <div className="w-full flex justify-center">
+              {previewUrl ? (
+                <div className="relative w-[150px] h-[150px]">
                   <Image
                     src={previewUrl}
-                    alt="Uploaded logo"
-                    width={100}
-                    height={100}
-                    className="rounded-md border"
+                    alt="Uploaded Logo Preview"
+                    width={150}
+                    height={150}
+                    className="rounded-md border border-border"
                   />
+
+                  <button
+                    type="button"
+                    className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition"
+                    onClick={() => handleRemoveImage(field.onChange)}
+                  >
+                    <XCircle className="w-5 h-5" />
+                  </button>
                 </div>
-              )}
+              ) : null}
+
+              <Button
+                className="rounded-[5px] h-[55px] w-full flex items-center justify-center md:text-base text-sm hover:bg-primary-hover"
+                type="button"
+                onClick={() => handleUpload(field.onChange)}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center gap-2">
+                    <span>Please wait</span>
+                    <LoaderCircle className="w-5 h-5 animate-spin" />
+                  </div>
+                ) : (
+                  <>
+                    <UploadCloud className="!w-[20px] !h-[20px]" />
+                    {previewUrl ? "Change Logo" : "Upload Logo"}
+                  </>
+                )}
+              </Button>
             </div>
           </FormControl>
-          <FormMessage className="text-destructive text-base" />
+          <FormMessage className="text-destructive text-sm" />
         </FormItem>
       )}
     />
