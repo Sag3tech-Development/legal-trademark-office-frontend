@@ -17,7 +17,7 @@ const AboutHeroSection = () => {
           </h1>
 
           <Link
-            href={"/business-registration/step-1"}
+            href={"/business-registration/step-01"}
             className="h-12 w-12 rounded-full bg-secondary flex-center glow-effect hover:bg-secondary-hover transition-colors duration-200"
           >
             <FaLongArrowAltRight size={25} className="text-primary-foreground" />

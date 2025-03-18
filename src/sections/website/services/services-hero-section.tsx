@@ -71,7 +71,7 @@ const ServicesHeroSection = ({
           </p>
 
           <Button
-            onClick={() => handleNavigation(`/business-registration/step-1`)}
+            onClick={() => handleNavigation(`/business-registration/step-01`)}
             className="text-base md:w-fit w-full h-[50px] !rounded-lg hover:bg-primary-hover relative overflow-hidden shine-effect"
           >
             {buttonText}

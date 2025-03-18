@@ -7,9 +7,9 @@ import { State, City } from "country-state-city";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { BusinessRegistrationStep1FormData } from "@/interfaces/form-interfaces";
+import { BusinessRegistrationStep01FormData } from "@/interfaces/form-interfaces";
 
-import { BusinessRegistrationStep1FormSchema } from "@/schemas/business-registration-step-1-form-schema";
+import { BusinessRegistrationStep01FormSchema } from "@/schemas/business-registration-step-01-form-schema";
 
 import { ApiRequest } from "@/utils/api-request";
 
@@ -22,7 +22,7 @@ import { Button } from "../ui/button";
 
 import { LoaderCircle } from "lucide-react";
 
-const BusinessRegistrationStep1Form = () => {
+const BusinessRegistrationStep01Form = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -48,7 +48,7 @@ const BusinessRegistrationStep1Form = () => {
   );
 
   const form = useForm({
-    resolver: zodResolver(BusinessRegistrationStep1FormSchema),
+    resolver: zodResolver(BusinessRegistrationStep01FormSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -68,7 +68,7 @@ const BusinessRegistrationStep1Form = () => {
 
   const { handleSubmit, control } = form;
 
-  const onSubmit = async (data: BusinessRegistrationStep1FormData) => {
+  const onSubmit = async (data: BusinessRegistrationStep01FormData) => {
     if (data.system01 || data.system02) {
       console.warn("Bot detected!");
       return;
@@ -76,22 +76,27 @@ const BusinessRegistrationStep1Form = () => {
 
     setLoading(true);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { system01, system02, ...filteredData } = data;
 
     try {
-      const response = await ApiRequest<{ success: boolean; message: string }>({
-        endpoint: "/lto/form/step-1",
+      await ApiRequest<{ success: boolean; message: string }>({
+        endpoint: "/legal-trademark-office/form/step-01",
         method: "POST",
         body: filteredData,
         onSuccess: () => {
-          router.push("/business-registration/step-2");
+          router.push("/business-registration/step-02");
         },
         onFailure: () => {
           toast.error("Failed to complete the form.");
         },
       });
-    } catch (error: any) {
-      toast.error("Form submission failed:", error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(`Form submission failed: ${error.message}`);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     } finally {
       setLoading(false);
     }
@@ -221,4 +226,4 @@ const BusinessRegistrationStep1Form = () => {
   );
 };
 
-export default BusinessRegistrationStep1Form;
+export default BusinessRegistrationStep01Form;

@@ -75,7 +75,7 @@ const TrademarkProcessSection = () => {
           </div>
 
           <Button
-            onClick={() => handleNavigation(`/business-registration/step-1`)}
+            onClick={() => handleNavigation(`/business-registration/step-01`)}
             className="md:h-[55px] h-[45px] md:w-fit w-full rounded-lg text-base mt-8 px-4 hover:bg-primary-hover relative overflow-hidden shine-effect font-inter"
           >
             Start registering your trademark

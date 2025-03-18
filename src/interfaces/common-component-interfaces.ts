@@ -1,4 +1,7 @@
-import { Control, FieldValues, Path } from "react-hook-form";
+import { StaticImageData } from "next/image";
+import { Control, FieldValues, Path, UseFormSetValue } from "react-hook-form";
+
+import { ProtectionTypeEnum } from "@/enums/protection-type-enum";
 
 export interface SystemHeadingProps {
   heading: string;
@@ -37,4 +40,30 @@ export interface CustomDropdown02Props<T extends FieldValues> {
     value: string | boolean | number;
   }[];
   placeholder?: string;
+}
+
+export interface CustomSelectionProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  options: {
+    label: string;
+    value: ProtectionTypeEnum;
+    image: string | StaticImageData;
+  }[];
+}
+
+export interface CustomUploadProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  setValue: UseFormSetValue<T>;
+}
+
+export interface CustomCalendarProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  disabled?: boolean;
+  setValue: UseFormSetValue<T>;
 }

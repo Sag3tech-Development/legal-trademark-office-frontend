@@ -87,7 +87,7 @@ const Header = () => {
           </NavigationMenu>
 
           <Button
-            onClick={() => handleNavigation("/business-registration/step-1")}
+            onClick={() => handleNavigation("/business-registration/step-01")}
             className="h-[45px] lg:text-base rounded-lg border-2 border-primary bg-transparent text-primary font-inter font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
           >
             Trademark Now

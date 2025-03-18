@@ -50,7 +50,7 @@ const BusinessHeader = () => {
           </Link>
 
           <Button
-            onClick={() => handleNavigation(`/business-registration/step-1`)}
+            onClick={() => handleNavigation(`/business-registration/step-01`)}
             className="h-[45px] lg:text-base rounded-lg text-sm hover:bg-primary-hover relative overflow-hidden shine-effect font-inter"
           >
             Start Registering Now

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 
-import BusinessRegistrationStep1Page from "@/custom-pages/system/business-registration-step-1-page";
+import BusinessRegistrationStep01Page from "@/custom-pages/system/business-registration-step-01-page";
 
 import { GetPageMetadata } from "@/utils/meta-data";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = GetPageMetadata({
 });
 
 const page = () => {
-  return <BusinessRegistrationStep1Page />;
+  return <BusinessRegistrationStep01Page />;
 };
 
 export default page;

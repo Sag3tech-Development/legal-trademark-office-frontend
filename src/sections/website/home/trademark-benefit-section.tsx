@@ -38,7 +38,7 @@ const TrademarkBenefitSection = () => {
         </p>
 
         <Button
-          onClick={() => handleNavigation(`/business-registration/step-1`)}
+          onClick={() => handleNavigation(`/business-registration/step-01`)}
           className="md:h-[55px] h-[45px] hover:bg-primary-hover md:w-fit w-full rounded-lg md:text-base text-sm mt-6 px-4 relative overflow-hidden shine-effect font-inter"
         >
           Start registering your trademark

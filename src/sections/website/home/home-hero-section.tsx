@@ -43,7 +43,7 @@ const HomeHeroSection = () => {
           </h1>
 
           <Button
-            onClick={() => handleNavigation(`/business-registration/step-1`)}
+            onClick={() => handleNavigation(`/business-registration/step-01`)}
             className="md:h-[50px] h-[45px] md:w-[300px] w-full px-6 md:text-base text-sm hover:bg-primary-hover !rounded-lg relative overflow-hidden shine-effect font-inter"
           >
             Start Registering Now

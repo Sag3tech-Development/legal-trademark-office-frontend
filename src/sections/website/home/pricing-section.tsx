@@ -75,7 +75,7 @@ const PricingSection = () => {
 
                 <Button
                   onClick={() =>
-                    handleNavigation(`/business-registration/step-1`)
+                    handleNavigation(`/business-registration/step-01`)
                   }
                   className="hover:bg-primary-hover md:text-base text-sm md:py-6 py-5"
                 >

@@ -8,7 +8,7 @@ import {
   EmailSchemaValidator,
 } from "@/utils/form-validators";
 
-export const BusinessRegistrationStep1FormSchema = z.object({
+export const BusinessRegistrationStep01FormSchema = z.object({
   firstName: StrictStringValidator("first name"),
   lastName: StrictStringValidator("last name"),
   address: StrictStringValidator("address"),
