@@ -94,6 +94,7 @@ const BusinessRegistrationStep01Form = () => {
         body: filteredData,
         onSuccess: (response) => {
           dispatch(setFormId(response.data.formId));
+          toast.success("Step 1 Completed Successfully!");
           router.push("/business-registration/step-02");
         },
         onFailure: () => {

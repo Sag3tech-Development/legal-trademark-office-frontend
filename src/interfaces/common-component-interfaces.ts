@@ -74,3 +74,11 @@ export interface CustomTextareaProps<T extends FieldValues> {
   placeholder?: string;
   rows?: number;
 }
+
+export interface CustomCheckboxProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
+  description?: string;
+  priceLabel?: string;
+}
